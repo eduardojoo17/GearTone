@@ -11,6 +11,7 @@ public class Main {
        System.out.println("Nome do equipamento: ");             // quero fazer um loop para poder adicionar
        String nomeequ = ler.nextLine();
        System.out.println("Qual o tipo do equipamento: ");
+       
        String tipoequ = ler.nextLine();
        System.out.println("Marca do equipamento: ");
        String marcaequ = ler.nextLine();

@@ -1,16 +1,16 @@
 package model;
 
 public class Equipamentos {
-    String nome;
-    String tipo;
-    String marca;
-    double preco;
+   private String nome;
+   private String tipo;
+   private String marca;
+   private double preco;
     
     public Equipamentos(String nome, String tipo, String marca, double preco) {
-        this.nome = nome;
-        this.tipo = tipo;
-        this.marca = marca;
-        this.preco = preco;
+        this.setNome(nome);
+        this.setTipo(tipo);
+        this.setMarca(marca);
+        this.setPreco(preco);
     }
 
     public String getNome() {
@@ -18,6 +18,9 @@ public class Equipamentos {
     }
 
     public void setNome(String nome) {
+        if(nome== null || nome.trim().isEmpty()){
+            throw new IllegalArgumentException("O nome não pode ser nulo");
+        }
         this.nome = nome;
     }
 
@@ -26,6 +29,9 @@ public class Equipamentos {
     }
 
     public void setTipo(String tipo) {
+        if(tipo== null || tipo.trim().isEmpty()){
+            throw new IllegalArgumentException("O tipo não pode ser nulo");
+        }
         this.tipo = tipo;
     }
 
@@ -34,6 +40,9 @@ public class Equipamentos {
     }
 
     public void setMarca(String marca) {
+        if(marca== null || marca.trim().isEmpty()){
+            throw new IllegalArgumentException("O marca não pode ser nulo");
+        }
         this.marca = marca;
     }
 
@@ -42,6 +51,8 @@ public class Equipamentos {
     }
 
     public void setPreco(double preco) {
+        if(preco<0){
+         throw new IllegalArgumentException("O preço não pode ser negativo") }
         this.preco = preco;
     }
 
