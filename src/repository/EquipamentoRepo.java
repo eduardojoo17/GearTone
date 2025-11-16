@@ -6,7 +6,7 @@ import java.util.List;
 import model.Equipamentos;
 public class EquipamentoRepo {
     
-    ArrayList<Equipamentos> lista = new ArrayList<>();
+  private ArrayList<Equipamentos> lista = new ArrayList<>();
 
     
 
@@ -14,5 +14,18 @@ public class EquipamentoRepo {
         if (e == null) return;
         lista.add(e);}
 
+    public List<Equipamentos> listarTodos(){  // listar 
+        return lista;
+    }
+
+    public boolean remover(int indice) {
+    if (indice < 0 || indice >= lista.size()) {
+        return false; // índice inválido
+    }
+    lista.remove(indice); // remove o objeto inteiro da lista
+    return true;
+}
+
     
+
     }

@@ -47,7 +47,7 @@ public class Equipamentos {
 
     @Override
     public String toString() {
-        return "equipamentos [nome=" + nome + ", tipo=" + tipo + ", marca=" + marca + ", preco=" + preco + "]";
+        return "Cadastro Salvo - > [nome=" + nome + ", tipo=" + tipo + ", marca=" + marca + ", preco=" + preco + "]";
     }
     
 }
