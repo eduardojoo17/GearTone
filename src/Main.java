@@ -64,6 +64,7 @@ public class Main {
 
                     if(itens.isEmpty()){
                         System.out.println(" não há equipamentos cadastrados\n");
+                        break;
                     }
 
                     for(int i=0;i<itens.size();i++){
