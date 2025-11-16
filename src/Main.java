@@ -1,7 +1,9 @@
 import model.Equipamentos;
 import repository.EquipamentoRepo;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -39,15 +41,45 @@ public class Main {
 
                     Equipamentos r =new Equipamentos(nomeequ, tipoequ, marcaequ, precoequ);
                     repo.adicionar(r);
+                    System.out.println(r);
                     
                 
                     break;
 
                     case 2:
                     
-                    break;
-                    case 3:
+
                     
+                List<Equipamentos> lista = repo.listarTodos();
+                System.out.println("---- Lista de Equipamentos ----");
+
+                     for (int i = 0; i < lista.size(); i++) {
+                     System.out.println(i + " - " + lista.get(i));
+                        }
+                     break;
+
+                    case 3:
+
+                    List<Equipamentos> itens = repo.listarTodos();
+
+                    if(itens.isEmpty()){
+                        System.out.println(" não há equipamentos cadastrados\n");
+                    }
+
+                    for(int i=0;i<itens.size();i++){
+                        System.out.println("indice -> "+ i +" - "+itens.get(i));
+                    }
+                    System.out.println("\ndigite o indice do equipamento para remove-lo:");
+                    int indice = ler.nextInt();
+                    boolean remo =repo.remover(indice);
+
+                    if (remo==false) {
+                        System.out.println("indice não encontrado!!!\n ");
+                    }else{
+                        System.out.println("equipamento removido!!\n");
+                    }
+
+
                     break;
                     case 4:
                     
@@ -62,14 +94,6 @@ public class Main {
             }
 
         }while(n!=5);
-
-
-
-
-
-
-
-     
        
      
    
