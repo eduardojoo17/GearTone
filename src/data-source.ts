@@ -1,4 +1,8 @@
 import { DataSource, DataSourceOptions } from "typeorm";
+import { Usuario } from "./entity/Usuario.js";
+import { Instrumento } from "./entity/Instrumento.js";
+import { Repertorio } from "./entity/Repertorio.js";
+import { SessaoEstudo } from "./entity/SessaoEstudo.js";
 
 const options: DataSourceOptions = {
   type: (process.env.DB_TYPE as "postgres") || "postgres",
@@ -9,7 +13,8 @@ const options: DataSourceOptions = {
   database: process.env.DB_DATABASE,
   synchronize: true,
   logging: true,
-  entities: [],
+  // Passando as classes importadas diretamente no array
+  entities: [Usuario, Instrumento, Repertorio, SessaoEstudo],
 
   migrations: [],
   subscribers: [],

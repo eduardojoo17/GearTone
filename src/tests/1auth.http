@@ -1,0 +1,30 @@
+### Registrar Admin do Sistema
+POST http://localhost:3000/api/auth/registrar
+Content-Type: application/json
+
+{
+  "nome": "Admin GearTone",
+  "email": "admin@geartone.com",
+  "senha": "1234",
+  "role": "admin"
+}
+
+### Registrar Usuário Comum (Músico)
+POST http://localhost:3000/api/auth/registrar
+Content-Type: application/json
+
+{
+  "nome": "Eduardo Baixista",
+  "email": "eduardo@geartone.com",
+  "senha": "1234",
+  "role": "usuario"
+}
+
+### Logar (Obter Token JWT)
+POST http://localhost:3000/api/auth/logar
+Content-Type: application/json
+
+{
+  "email": "eduardo@geartone.com",
+  "senha": "1234"
+}

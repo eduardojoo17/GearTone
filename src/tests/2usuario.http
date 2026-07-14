@@ -1,0 +1,36 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InVzdWFyaW8iLCJpYXQiOjE3ODQwNTA3NzksImV4cCI6MTc4NDA3OTU3OX0.o0BCC4DM0JZXGmEmHNujQq4-EOF459JM-W4S763ErMw
+
+
+# ====================================================================
+# 2. ROTAS PROTEGIDAS DE USUÁRIOS
+# ====================================================================
+
+### Buscar Todos
+GET http://localhost:3000/api/usuarios
+Authorization: Bearer {{token}}
+
+###
+
+### Buscar por ID específico
+GET http://localhost:3000/api/usuarios/2
+Authorization: Bearer {{token}}
+
+###
+
+### Atualizar Usuário
+PUT http://localhost:3000/api/usuarios/2
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "João Silva",
+  "email": "joao@email.com",
+  "senha": "1234",
+  "role": "usuario"
+}
+
+###
+
+### Deletar Usuário
+DELETE http://localhost:3000/api/usuarios/2
+Authorization: Bearer {{token}}
