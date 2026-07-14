@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022" /* Versão do JavaScript gerada */,
+    "module": "NodeNext" /* Sistema de módulos moderno do Node */,
+    "moduleResolution": "NodeNext",
+    "rootDir": "./src" /* Onde o código TypeScript vai ficar */,
+    "outDir": "./dist" /* Onde o código JavaScript compilado será salvo */,
+    "esModuleInterop": true /* Compatibilidade para importações */,
+    "forceConsistentCasingInFileNames": true /* Garante consistência de letras maiúsculas/minúsculas */,
+    "strict": true /* Ativa checagem rígida de tipos */,
+    "skipLibCheck": true /* Ignora checagem de tipos de bibliotecas externas */,
+    "experimentalDecorators": true /* Necessário para TypeORM e Class-validator */,
+    "emitDecoratorMetadata": true /* Necessário para o TypeORM ler os tipos das colunas */,
+    "strictPropertyInitialization": false /* Evita que o TS reclame de propriedades não inicializadas nas Entidades */
+  },
+  "include": ["src/**/*"] /* Compila apenas o que estiver na pasta src */
+}
