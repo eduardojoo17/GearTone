@@ -4,9 +4,7 @@
   "description": "- Dado inicio a primeira fase do projeto pessoal Gear Tone.",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "dev": "node --env-file=.env --import tsx --watch src/index.ts"
   },
   "repository": {
     "type": "git",
