@@ -25,11 +25,21 @@ export enum StatusInstrumento {
   PERDIDO = "perdido",
   FURTADO = "furtado",
 }
+export enum TipoInstrumento {
+  GUITARRA = "guitarra",
+  BAIXO = "baixo",
+  VIOLAO = "violao",
+  BATERIA = "bateria",
+  TECLADO = "teclado",
+  VIOLINO = "violino",
+  SAXOFONE = "saxofone",
+  OUTRO = "outro",
+}
 
 @Entity("instrumentos")
 export class Instrumento {
-  @PrimaryGeneratedColumn("uuid")
-  id!: string;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
   @Column({ type: "varchar" }) // ◄ Tipo explícito adicionado
   @IsNotEmpty({ message: "O nome do instrumento é obrigatório" })
@@ -43,6 +53,13 @@ export class Instrumento {
   })
   @IsEnum(StatusInstrumento, { message: "Status inválido" })
   status!: StatusInstrumento;
+
+  @Column({
+    type: "enum",
+    enum: TipoInstrumento,
+  })
+  @IsEnum(TipoInstrumento, { message: "Tipo de instrumento inválido" })
+  tipo!: TipoInstrumento;
 
   @Column({ type: "timestamp", nullable: true })
   @IsOptional()
