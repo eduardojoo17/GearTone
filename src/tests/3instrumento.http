@@ -1,0 +1,107 @@
+@token=COLE_AQUI_O_TOKEN_RETORNADO_POR_1auth.http
+@instrumentoId=COLE_AQUI_O_ID_RETORNADO_NO_CADASTRO
+
+# ====================================================================
+# 3. INSTRUMENTOS (RF02 a RF05)
+# ====================================================================
+
+### Cadastrar instrumento (UC01)
+POST http://localhost:3000/api/instrumentos
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Jazz Bass Tagima",
+  "observacoes": "Comprado usado, cordas novas"
+}
+
+###
+
+### Cadastrar um segundo instrumento
+POST http://localhost:3000/api/instrumentos
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Stratocaster Seizi",
+  "favorito": true,
+  "atual": true
+}
+
+###
+
+### Listar todos os instrumentos
+GET http://localhost:3000/api/instrumentos
+Authorization: Bearer {{token}}
+
+###
+
+### Listar apenas os ativos (RF02)
+GET http://localhost:3000/api/instrumentos?status=ativo
+Authorization: Bearer {{token}}
+
+###
+
+### Listar os vendidos (histórico - RF05)
+GET http://localhost:3000/api/instrumentos?status=vendido
+Authorization: Bearer {{token}}
+
+###
+
+### Buscar por id
+GET http://localhost:3000/api/instrumentos/{{instrumentoId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Editar instrumento
+PUT http://localhost:3000/api/instrumentos/{{instrumentoId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Jazz Bass Tagima TW-73",
+  "observacoes": "Regulagem feita em 10/2025"
+}
+
+###
+
+### Definir como favorito (RF03/UC02 - remove o favorito anterior)
+PATCH http://localhost:3000/api/instrumentos/{{instrumentoId}}/favorito
+Authorization: Bearer {{token}}
+
+###
+
+### Definir como instrumento atual (RF04/UC03)
+PATCH http://localhost:3000/api/instrumentos/{{instrumentoId}}/atual
+Authorization: Bearer {{token}}
+
+###
+
+### Alterar status (RF05/UC04)
+PATCH http://localhost:3000/api/instrumentos/{{instrumentoId}}/status
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status": "vendido",
+  "statusAlteradoEm": "2026-08-20",
+  "observacoes": "Vendido para comprar o baixo novo"
+}
+
+###
+
+### Status inválido (deve retornar 400)
+PATCH http://localhost:3000/api/instrumentos/{{instrumentoId}}/status
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status": "emprestado"
+}
+
+###
+
+### Remover instrumento
+DELETE http://localhost:3000/api/instrumentos/{{instrumentoId}}
+Authorization: Bearer {{token}}

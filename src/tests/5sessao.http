@@ -1,0 +1,101 @@
+@token=COLE_AQUI_O_TOKEN_RETORNADO_POR_1auth.http
+@sessaoId=COLE_AQUI_O_ID_RETORNADO_NO_CADASTRO
+@musicaId=COLE_AQUI_UM_ID_DE_4repertorio.http
+@instrumentoId=COLE_AQUI_UM_ID_DE_3instrumento.http
+
+# ====================================================================
+# 5. DIÁRIO DE ESTUDOS (RF08)
+# ====================================================================
+
+### Registrar sessão completa (UC06)
+POST http://localhost:3000/api/sessoes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "data": "2026-08-26T19:00:00",
+  "duracaoMinutos": 45,
+  "musicaId": "{{musicaId}}",
+  "instrumentoId": "{{instrumentoId}}",
+  "observacoes": "Trabalhei o groove em 90 bpm"
+}
+
+###
+
+### Registrar sessão sem música e sem instrumento (ambos opcionais)
+POST http://localhost:3000/api/sessoes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "data": "2026-08-25T20:30:00",
+  "duracaoMinutos": 30,
+  "observacoes": "Só técnica: alternate picking"
+}
+
+###
+
+### Listar sessões (mais recentes primeiro)
+GET http://localhost:3000/api/sessoes
+Authorization: Bearer {{token}}
+
+###
+
+### Listar sessões de uma música
+GET http://localhost:3000/api/sessoes?musicaId={{musicaId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Listar sessões de um instrumento
+GET http://localhost:3000/api/sessoes?instrumentoId={{instrumentoId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Buscar por id
+GET http://localhost:3000/api/sessoes/{{sessaoId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Atualizar sessão
+PUT http://localhost:3000/api/sessoes/{{sessaoId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "duracaoMinutos": 60,
+  "observacoes": "Consegui subir para 100 bpm"
+}
+
+###
+
+### Duração inválida (deve retornar 400)
+POST http://localhost:3000/api/sessoes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "data": "2026-08-26T19:00:00",
+  "duracaoMinutos": 0
+}
+
+###
+
+### Música de outro usuário (deve retornar 404 - RNF02)
+POST http://localhost:3000/api/sessoes
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "data": "2026-08-26T19:00:00",
+  "duracaoMinutos": 20,
+  "musicaId": "00000000-0000-4000-8000-000000000000"
+}
+
+###
+
+### Remover sessão
+DELETE http://localhost:3000/api/sessoes/{{sessaoId}}
+Authorization: Bearer {{token}}

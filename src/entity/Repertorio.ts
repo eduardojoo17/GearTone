@@ -40,7 +40,7 @@ export class Repertorio {
   @IsEnum(StatusMusica, { message: "Status inválido" })
   status!: StatusMusica;
 
-  @ManyToOne(() => Usuario, (usuario) => usuario.repertorio)
+  @ManyToOne(() => Usuario, (usuario) => usuario.repertorio, { onDelete: "CASCADE" })
   @JoinColumn({ name: "usuarioId" })
   usuario!: Usuario;
 

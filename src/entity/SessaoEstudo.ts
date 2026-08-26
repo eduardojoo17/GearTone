@@ -29,7 +29,7 @@ export class SessaoEstudo {
   @IsString({ message: "As observações precisam ser um texto" })
   observacoes!: string | null;
 
-  @ManyToOne(() => Usuario, (usuario) => usuario.sessoesEstudo)
+  @ManyToOne(() => Usuario, (usuario) => usuario.sessoesEstudo, { onDelete: "CASCADE" })
   @JoinColumn({ name: "usuarioId" })
   usuario!: Usuario;
 
@@ -38,6 +38,7 @@ export class SessaoEstudo {
 
   @ManyToOne(() => Repertorio, (repertorio) => repertorio.sessoesEstudo, {
     nullable: true,
+    onDelete: "SET NULL",
   })
   @JoinColumn({ name: "musicaId" })
   musica!: Repertorio | null;
@@ -47,6 +48,7 @@ export class SessaoEstudo {
 
   @ManyToOne(() => Instrumento, (instrumento) => instrumento.sessoesEstudo, {
     nullable: true,
+    onDelete: "SET NULL",
   })
   @JoinColumn({ name: "instrumentoId" })
   instrumento!: Instrumento | null;
