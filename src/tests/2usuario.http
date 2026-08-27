@@ -1,11 +1,23 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InVzdWFyaW8iLCJpYXQiOjE3ODQwNTA3NzksImV4cCI6MTc4NDA3OTU3OX0.o0BCC4DM0JZXGmEmHNujQq4-EOF459JM-W4S763ErMw
-
+@token=COLE_AQUI_O_TOKEN_RETORNADO_POR_1auth.http
+@tokenAdmin=COLE_AQUI_O_TOKEN_DO_ADMIN
 
 # ====================================================================
 # 2. ROTAS PROTEGIDAS DE USUÁRIOS
 # ====================================================================
 
-### Buscar Todos
+### Meu perfil (RF01)
+GET http://localhost:3000/api/usuarios/perfil
+Authorization: Bearer {{token}}
+
+###
+
+### Buscar Todos (RNF02 - só administrador)
+GET http://localhost:3000/api/usuarios
+Authorization: Bearer {{tokenAdmin}}
+
+###
+
+### Buscar Todos com token comum (deve retornar 401)
 GET http://localhost:3000/api/usuarios
 Authorization: Bearer {{token}}
 
@@ -17,7 +29,7 @@ Authorization: Bearer {{token}}
 
 ###
 
-### Atualizar Usuário
+### Atualizar Usuário (a senha é regravada com hash - RNF04)
 PUT http://localhost:3000/api/usuarios/2
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -25,9 +37,25 @@ Authorization: Bearer {{token}}
 {
   "nome": "João Silva",
   "email": "joao@email.com",
-  "senha": "1234",
-  "role": "usuario"
+  "senha": "1234"
 }
+
+###
+
+### Tentar virar admin com token comum (deve retornar 401)
+PUT http://localhost:3000/api/usuarios/2
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "role": "admin"
+}
+
+###
+
+### Acessar dados de outro usuário (deve retornar 401 - RNF02)
+GET http://localhost:3000/api/usuarios/1
+Authorization: Bearer {{token}}
 
 ###
 

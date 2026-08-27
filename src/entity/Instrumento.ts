@@ -62,7 +62,7 @@ export class Instrumento {
   @IsBoolean({ message: "Atual precisa ser verdadeiro ou falso" })
   atual!: boolean;
 
-  @ManyToOne(() => Usuario, (usuario) => usuario.instrumentos)
+  @ManyToOne(() => Usuario, (usuario) => usuario.instrumentos, { onDelete: "CASCADE" })
   @JoinColumn({ name: "usuarioId" })
   usuario!: Usuario;
 

@@ -1,0 +1,11 @@
+@token=COLE_AQUI_O_TOKEN_RETORNADO_POR_1auth.http
+
+# ====================================================================
+# 6. DASHBOARD (RF09/UC07)
+# ====================================================================
+
+### Resumo do usuário logado
+# Retorna: total/ativos/inativos de instrumentos, favorito, atual,
+# total do repertório, músicas para revisar, sessões e tempo estudado.
+GET http://localhost:3000/api/dashboard
+Authorization: Bearer {{token}}

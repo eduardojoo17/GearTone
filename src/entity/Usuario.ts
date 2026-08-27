@@ -3,7 +3,6 @@ import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 import { Instrumento } from "./Instrumento.js";
 import { Repertorio } from "./Repertorio.js";
 import { SessaoEstudo } from "./SessaoEstudo.js";
-import { type } from "node:os";
 
 @Entity("usuarios")
 export class Usuario {

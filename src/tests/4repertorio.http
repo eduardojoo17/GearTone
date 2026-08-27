@@ -1,0 +1,81 @@
+@token=COLE_AQUI_O_TOKEN_RETORNADO_POR_1auth.http
+@musicaId=COLE_AQUI_O_ID_RETORNADO_NO_CADASTRO
+
+# ====================================================================
+# 4. REPERTÓRIO (RF06 e RF07)
+# ====================================================================
+
+### Cadastrar música (UC05)
+POST http://localhost:3000/api/repertorio
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Teen Town",
+  "artista": "Weather Report",
+  "status": "estudando"
+}
+
+###
+
+### Cadastrar outra música
+POST http://localhost:3000/api/repertorio
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Cissy Strut",
+  "artista": "The Meters"
+}
+
+###
+
+### Listar repertório
+GET http://localhost:3000/api/repertorio
+Authorization: Bearer {{token}}
+
+###
+
+### Pesquisar por nome ou artista (RF06)
+GET http://localhost:3000/api/repertorio?busca=meters
+Authorization: Bearer {{token}}
+
+###
+
+### Filtrar por status (RF07)
+GET http://localhost:3000/api/repertorio?status=revisar
+Authorization: Bearer {{token}}
+
+###
+
+### Buscar por id
+GET http://localhost:3000/api/repertorio/{{musicaId}}
+Authorization: Bearer {{token}}
+
+###
+
+### Atualizar status da música
+PUT http://localhost:3000/api/repertorio/{{musicaId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status": "sei_tocar"
+}
+
+###
+
+### Sem o artista (deve retornar 400)
+POST http://localhost:3000/api/repertorio
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Música sem artista"
+}
+
+###
+
+### Remover música
+DELETE http://localhost:3000/api/repertorio/{{musicaId}}
+Authorization: Bearer {{token}}
